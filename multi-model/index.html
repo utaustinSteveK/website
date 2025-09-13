@@ -2063,33 +2063,33 @@
 <h2 id="task-specific-recommendations">Task-Specific Recommendations<a class="headerlink" href="#task-specific-recommendations" title="Permanent link">&para;</a></h2>
 <h3 id="text-extraction">Text Extraction<a class="headerlink" href="#text-extraction" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Fast text extraction</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>netintel-ocr<span class="w"> </span>--model<span class="w"> </span>moondream:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--model<span class="w"> </span>moondream:latest
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># High accuracy OCR</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>netintel-ocr<span class="w"> </span>--model<span class="w"> </span>Nanonets-OCR-s:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--model<span class="w"> </span>Nanonets-OCR-s:latest
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Default balanced approach</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>netintel-ocr<span class="w"> </span>--model<span class="w"> </span>NetIntelOCR-7B-0925<span class="w"> </span>document.pdf
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--model<span class="w"> </span>NetIntelOCR-7B-0925
 </code></pre></div>
 <h3 id="network-diagrams">Network Diagrams<a class="headerlink" href="#network-diagrams" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Simple network topology</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest<span class="w"> </span>network.pdf
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>network.pdf<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Complex architecture</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>llava:13b<span class="w"> </span>architecture.pdf
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>architecture.pdf<span class="w"> </span>--network-model<span class="w"> </span>llava:13b
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Recommended for most cases</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>qwen2.5vl:7b<span class="w"> </span>design.pdf
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>design.pdf<span class="w"> </span>--network-model<span class="w"> </span>qwen2.5vl:7b
 </code></pre></div>
 <h3 id="flow-diagrams">Flow Diagrams<a class="headerlink" href="#flow-diagrams" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Business process flows</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>netintel-ocr<span class="w"> </span>--flow-model<span class="w"> </span>qwen2.5vl:7b<span class="w"> </span>process.pdf
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>process.pdf<span class="w"> </span>--flow-model<span class="w"> </span>qwen2.5vl:7b
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Complex decision trees</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>netintel-ocr<span class="w"> </span>--flow-model<span class="w"> </span>llava:13b<span class="w"> </span>workflow.pdf
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>workflow.pdf<span class="w"> </span>--flow-model<span class="w"> </span>llava:13b
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Quick extraction</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>netintel-ocr<span class="w"> </span>--flow-model<span class="w"> </span>bakllava:latest<span class="w"> </span>simple-flow.pdf
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>simple-flow.pdf<span class="w"> </span>--flow-model<span class="w"> </span>bakllava:latest
 </code></pre></div>
 <h2 id="model-selection-strategy">Model Selection Strategy<a class="headerlink" href="#model-selection-strategy" title="Permanent link">&para;</a></h2>
 <h3 id="by-document-type">By Document Type<a class="headerlink" href="#by-document-type" title="Permanent link">&para;</a></h3>
@@ -2169,7 +2169,7 @@
 <h2 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h2>
 <h3 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Use fast models for batch</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>netintel-ocr<span class="w"> </span>--batch<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--model<span class="w"> </span>moondream:latest<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>--network-model<span class="w"> </span>minicpm-v:latest<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span>*.pdf
@@ -2187,11 +2187,11 @@
 </code></pre></div>
 <h3 id="model-caching">Model Caching<a class="headerlink" href="#model-caching" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Preload models</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>netintel-ocr<span class="w"> </span>--preload-models<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>netintel-ocr<span class="w"> </span>model<span class="w"> </span>preload<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="s2">&quot;qwen2.5vl:7b,Nanonets-OCR-s:latest&quot;</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># Keep models in memory</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>netintel-ocr<span class="w"> </span>--keep-models-loaded<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>netintel-ocr<span class="w"> </span>model<span class="w"> </span>keep-loaded<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span>--model-cache-ttl<span class="w"> </span><span class="m">3600</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span>document.pdf
 </code></pre></div>
@@ -2272,14 +2272,14 @@
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ollama<span class="w"> </span>pull<span class="w"> </span>your-custom-model:latest
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Register with NetIntel-OCR</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>netintel-ocr<span class="w"> </span>--register-model<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>netintel-ocr<span class="w"> </span>model<span class="w"> </span>register<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span>--name<span class="w"> </span>custom-model<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span>--type<span class="w"> </span>vision-language<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span>--capabilities<span class="w"> </span><span class="s2">&quot;network,flow,text&quot;</span>
 </code></pre></div>
 <h3 id="model-evaluation">Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Test model performance</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>netintel-ocr<span class="w"> </span>--evaluate-model<span class="w"> </span>custom-model:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>netintel-ocr<span class="w"> </span>model<span class="w"> </span>evaluate<span class="w"> </span>custom-model:latest<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>--test-set<span class="w"> </span>/path/to/test/documents<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>--metrics<span class="w"> </span><span class="s2">&quot;accuracy,speed,memory&quot;</span>
 </code></pre></div>
@@ -2293,20 +2293,20 @@
 </code></pre></div>
 <h3 id="out-of-memory">Out of Memory<a class="headerlink" href="#out-of-memory" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Use smaller model</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># Reduce context size</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>netintel-ocr<span class="w"> </span>--max-context<span class="w"> </span><span class="m">2048</span><span class="w"> </span>document.pdf
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--max-context<span class="w"> </span><span class="m">2048</span>
 </code></pre></div>
 <h3 id="slow-processing">Slow Processing<a class="headerlink" href="#slow-processing" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Use faster model</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>bakllava:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--network-model<span class="w"> </span>bakllava:latest
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># Enable GPU</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>netintel-ocr<span class="w"> </span>--gpu<span class="w"> </span>document.pdf
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--gpu
 <a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
 <a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># Reduce quality for speed</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>netintel-ocr<span class="w"> </span>--fast-mode<span class="w"> </span>document.pdf
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--fast-mode
 </code></pre></div>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>

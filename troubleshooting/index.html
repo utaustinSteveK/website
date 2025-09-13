@@ -2374,7 +2374,7 @@
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span>http://192.168.1.100:11434
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Or use CLI parameter</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>netintel-ocr<span class="w"> </span>--ollama-host<span class="w"> </span>http://192.168.1.100:11434<span class="w"> </span>document.pdf
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--ollama-host<span class="w"> </span>http://192.168.1.100:11434
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Test connection</span>
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>curl<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/tags
@@ -2391,20 +2391,20 @@
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>ollama<span class="w"> </span>pull<span class="w"> </span>qwen2.5vl:7b
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Use available model</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>llava:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--network-model<span class="w"> </span>llava:latest
 </code></pre></div></p>
 <h4 id="out-of-memory">Out of Memory<a class="headerlink" href="#out-of-memory" title="Permanent link">&para;</a></h4>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ERROR: Out of memory (OOM)
 </code></pre></div>
 <strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Use smaller model</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Limit context size</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>netintel-ocr<span class="w"> </span>--max-context<span class="w"> </span><span class="m">2048</span><span class="w"> </span>document.pdf
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--max-context<span class="w"> </span><span class="m">2048</span>
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
 <a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># Process fewer pages</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>netintel-ocr<span class="w"> </span>--start<span class="w"> </span><span class="m">1</span><span class="w"> </span>--end<span class="w"> </span><span class="m">10</span><span class="w"> </span>document.pdf
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--pages<span class="w"> </span><span class="m">1</span>-10
 <a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
 <a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1"># Free memory</span>
 <a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>ollama<span class="w"> </span>stop<span class="w"> </span>all
@@ -2429,27 +2429,27 @@
 </code></pre></div>
 <strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Increase timeout</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>netintel-ocr<span class="w"> </span>--timeout<span class="w"> </span><span class="m">600</span><span class="w"> </span>document.pdf
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--timeout<span class="w"> </span><span class="m">600</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Use faster model</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>bakllava:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--network-model<span class="w"> </span>bakllava:latest
 <a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
 <a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1"># Process in smaller chunks</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>netintel-ocr<span class="w"> </span>--start<span class="w"> </span><span class="m">1</span><span class="w"> </span>--end<span class="w"> </span><span class="m">20</span><span class="w"> </span>document.pdf
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>netintel-ocr<span class="w"> </span>--start<span class="w"> </span><span class="m">21</span><span class="w"> </span>--end<span class="w"> </span><span class="m">40</span><span class="w"> </span>document.pdf
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--pages<span class="w"> </span><span class="m">1</span>-20
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--pages<span class="w"> </span><span class="m">21</span>-40
 </code></pre></div></p>
 <h4 id="mermaid-parse-error">Mermaid Parse Error<a class="headerlink" href="#mermaid-parse-error" title="Permanent link">&para;</a></h4>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ERROR: Parse error on line 3
 </code></pre></div>
 <strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Enable auto-fix</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>netintel-ocr<span class="w"> </span>--fix-mermaid<span class="w"> </span>document.pdf
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--fix-mermaid
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Use robust validator</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>netintel-ocr<span class="w"> </span>--validate-mermaid<span class="w"> </span>document.pdf
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--validate-mermaid
 <a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
 <a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># Disable Mermaid generation</span>
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>netintel-ocr<span class="w"> </span>--no-mermaid<span class="w"> </span>document.pdf
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--no-mermaid
 </code></pre></div></p>
 <h3 id="vector-store-issues">Vector Store Issues<a class="headerlink" href="#vector-store-issues" title="Permanent link">&para;</a></h3>
 <h4 id="milvus-connection-failed">Milvus Connection Failed<a class="headerlink" href="#milvus-connection-failed" title="Permanent link">&para;</a></h4>
@@ -2465,48 +2465,48 @@
 <a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from pymilvus import connections; connections.connect()&quot;</span>
 <a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>
 <a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="c1"># Use different host</span>
-<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>netintel-ocr<span class="w"> </span>--milvus-host<span class="w"> </span>milvus.server:19530<span class="w"> </span>document.pdf
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--milvus-host<span class="w"> </span>milvus.server:19530
 </code></pre></div></p>
 <h4 id="collection-already-exists">Collection Already Exists<a class="headerlink" href="#collection-already-exists" title="Permanent link">&para;</a></h4>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ERROR: Collection &#39;network_docs&#39; already exists
 </code></pre></div>
 <strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Drop existing collection</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>netintel-ocr<span class="w"> </span>--drop-collection<span class="w"> </span>network_docs
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>drop-collection<span class="w"> </span>network_docs
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
 <a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Or use different collection</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>netintel-ocr<span class="w"> </span>--collection<span class="w"> </span>network_docs_v2<span class="w"> </span>document.pdf
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--collection<span class="w"> </span>network_docs_v2
 <a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
 <a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># Append to existing</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>netintel-ocr<span class="w"> </span>--append-collection<span class="w"> </span>network_docs<span class="w"> </span>document.pdf
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--append-collection<span class="w"> </span>network_docs
 </code></pre></div></p>
 <h3 id="performance-issues">Performance Issues<a class="headerlink" href="#performance-issues" title="Permanent link">&para;</a></h3>
 <h4 id="slow-processing">Slow Processing<a class="headerlink" href="#slow-processing" title="Permanent link">&para;</a></h4>
 <p><strong>Symptoms:</strong> Processing takes &gt;30s per page</p>
 <p><strong>Solutions:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Use faster models</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>netintel-ocr<span class="w"> </span>--fast-mode<span class="w"> </span>document.pdf
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--fast-mode
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
 <a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># Enable GPU</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>netintel-ocr<span class="w"> </span>--gpu<span class="w"> </span>document.pdf
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--gpu
 <a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
 <a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="c1"># Disable context extraction</span>
-<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>netintel-ocr<span class="w"> </span>--no-context<span class="w"> </span>document.pdf
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--no-context
 <a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
 <a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="c1"># Use cached models</span>
-<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>netintel-ocr<span class="w"> </span>--cache-models<span class="w"> </span>document.pdf
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--cache-models
 </code></pre></div></p>
 <h4 id="high-memory-usage">High Memory Usage<a class="headerlink" href="#high-memory-usage" title="Permanent link">&para;</a></h4>
 <p><strong>Symptoms:</strong> System becomes unresponsive</p>
 <p><strong>Solutions:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Limit memory usage</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>netintel-ocr<span class="w"> </span>--max-memory<span class="w"> </span>4GB<span class="w"> </span>document.pdf
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--max-memory<span class="w"> </span>4GB
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
 <a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># Process sequentially</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>netintel-ocr<span class="w"> </span>--no-parallel<span class="w"> </span>document.pdf
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--no-parallel
 <a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
 <a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1"># Clear cache</span>
-<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>netintel-ocr<span class="w"> </span>--clear-cache
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>clear-cache
 <a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.cache/netintel-ocr
 </code></pre></div></p>
 <h3 id="output-issues">Output Issues<a class="headerlink" href="#output-issues" title="Permanent link">&para;</a></h3>
@@ -2518,7 +2518,7 @@
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>output/
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
 <a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="c1"># Specify output directory</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>netintel-ocr<span class="w"> </span>--output-dir<span class="w"> </span>./my-output<span class="w"> </span>document.pdf
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--output-dir<span class="w"> </span>./my-output
 <a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>
 <a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="c1"># Check permissions</span>
 <a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>output/
@@ -2528,13 +2528,13 @@
 <p><strong>Symptoms:</strong> Mermaid diagrams don't render</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Validate Mermaid syntax</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>netintel-ocr<span class="w"> </span>--validate-only<span class="w"> </span>output/page_005_network.md
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>validate<span class="w"> </span>output/page_005_network.md
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
 <a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="c1"># Re-process with fixes</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>netintel-ocr<span class="w"> </span>--fix-mermaid<span class="w"> </span>--pages<span class="w"> </span><span class="m">5</span><span class="w"> </span>document.pdf
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--pages<span class="w"> </span><span class="m">5</span><span class="w"> </span>--fix-mermaid
 <a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
 <a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="c1"># Use different Mermaid version</span>
-<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>netintel-ocr<span class="w"> </span>--mermaid-version<span class="w"> </span><span class="m">10</span>.0.0<span class="w"> </span>document.pdf
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--mermaid-version<span class="w"> </span><span class="m">10</span>.0.0
 </code></pre></div></p>
 <h2 id="environment-verification">Environment Verification<a class="headerlink" href="#environment-verification" title="Permanent link">&para;</a></h2>
 <h3 id="check-system-compatibility">Check System Compatibility<a class="headerlink" href="#check-system-compatibility" title="Permanent link">&para;</a></h3>
@@ -2567,33 +2567,33 @@
 <h2 id="debugging-commands">Debugging Commands<a class="headerlink" href="#debugging-commands" title="Permanent link">&para;</a></h2>
 <h3 id="enable-debug-mode">Enable Debug Mode<a class="headerlink" href="#enable-debug-mode" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Full debug output (Linux only)</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>document.pdf
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf
 <a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
 <a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="c1"># Debug specific component</span>
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>netintel-ocr<span class="w"> </span>--debug-component<span class="w"> </span>network_detection<span class="w"> </span>document.pdf
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--debug-component<span class="w"> </span>network_detection
 <a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
 <a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="c1"># Save debug logs</span>
-<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>--log-file<span class="w"> </span>debug.log<span class="w"> </span>document.pdf
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--log-file<span class="w"> </span>debug.log
 </code></pre></div>
 <h3 id="test-components">Test Components<a class="headerlink" href="#test-components" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># Test OCR only</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>netintel-ocr<span class="w"> </span>--test-ocr<span class="w"> </span>document.pdf
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>test-ocr<span class="w"> </span>document.pdf
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
 <a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="c1"># Test diagram detection only</span>
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>netintel-ocr<span class="w"> </span>--test-detection<span class="w"> </span>document.pdf
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>test-detection<span class="w"> </span>document.pdf
 <a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
 <a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="c1"># Dry run without processing</span>
-<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>netintel-ocr<span class="w"> </span>--dry-run<span class="w"> </span>document.pdf
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--dry-run
 </code></pre></div>
 <h3 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># System health check</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>netintel-ocr<span class="w"> </span>--health-check
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>check
 <a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
 <a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c1"># Model availability</span>
-<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>netintel-ocr<span class="w"> </span>--check-models
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>netintel-ocr<span class="w"> </span>model<span class="w"> </span>list
 <a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
 <a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="c1"># Storage status</span>
-<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>netintel-ocr<span class="w"> </span>--check-storage
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>check
 </code></pre></div>
 <h2 id="log-analysis">Log Analysis<a class="headerlink" href="#log-analysis" title="Permanent link">&para;</a></h2>
 <h3 id="common-log-patterns">Common Log Patterns<a class="headerlink" href="#common-log-patterns" title="Permanent link">&para;</a></h3>
@@ -2611,35 +2611,35 @@
 </code></pre></div>
 <h3 id="log-levels">Log Levels<a class="headerlink" href="#log-levels" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Verbose logging</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>netintel-ocr<span class="w"> </span>--log-level<span class="w"> </span>DEBUG<span class="w"> </span>document.pdf
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>netintel-ocr<span class="w"> </span>--log-level<span class="w"> </span>DEBUG<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf
 <a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
 <a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c1"># Only errors</span>
-<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>netintel-ocr<span class="w"> </span>--log-level<span class="w"> </span>ERROR<span class="w"> </span>document.pdf
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>netintel-ocr<span class="w"> </span>--log-level<span class="w"> </span>ERROR<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf
 <a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
 <a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="c1"># Structured JSON logs</span>
-<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>netintel-ocr<span class="w"> </span>--log-format<span class="w"> </span>json<span class="w"> </span>document.pdf
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>netintel-ocr<span class="w"> </span>--log-format<span class="w"> </span>json<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf
 </code></pre></div>
 <h2 id="recovery-procedures">Recovery Procedures<a class="headerlink" href="#recovery-procedures" title="Permanent link">&para;</a></h2>
 <h3 id="resume-failed-processing">Resume Failed Processing<a class="headerlink" href="#resume-failed-processing" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># Save checkpoint</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>netintel-ocr<span class="w"> </span>--checkpoint<span class="w"> </span>state.json<span class="w"> </span>document.pdf
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--checkpoint<span class="w"> </span>state.json
 <a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
 <a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="c1"># Resume from checkpoint</span>
-<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>netintel-ocr<span class="w"> </span>--resume<span class="w"> </span>state.json<span class="w"> </span>document.pdf
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--resume<span class="w"> </span>state.json
 </code></pre></div>
 <h3 id="rebuild-vector-index">Rebuild Vector Index<a class="headerlink" href="#rebuild-vector-index" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># Rebuild corrupted index</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>netintel-ocr<span class="w"> </span>--rebuild-index<span class="w"> </span>network_docs
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>rebuild-index<span class="w"> </span>network_docs
 <a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
 <a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="c1"># Verify index integrity</span>
-<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>netintel-ocr<span class="w"> </span>--verify-index<span class="w"> </span>network_docs
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>verify-index<span class="w"> </span>network_docs
 </code></pre></div>
 <h3 id="reset-configuration">Reset Configuration<a class="headerlink" href="#reset-configuration" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># Reset to defaults</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>netintel-ocr<span class="w"> </span>--reset-config
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>reset
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
 <a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="c1"># Regenerate config</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>netintel-ocr<span class="w"> </span>--init<span class="w"> </span>--force
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>netintel-ocr<span class="w"> </span>project<span class="w"> </span>init<span class="w"> </span>--force
 </code></pre></div>
 <h2 id="platform-specific-issues">Platform-Specific Issues<a class="headerlink" href="#platform-specific-issues" title="Permanent link">&para;</a></h2>
 <h3 id="wsl2-windows-subsystem-for-linux">WSL2 (Windows Subsystem for Linux)<a class="headerlink" href="#wsl2-windows-subsystem-for-linux" title="Permanent link">&para;</a></h3>
@@ -2689,7 +2689,7 @@
 <h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
 <h3 id="generate-diagnostic-report">Generate Diagnostic Report<a class="headerlink" href="#generate-diagnostic-report" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># Full system diagnostic (Linux only)</span>
-<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>netintel-ocr<span class="w"> </span>--diagnostic-report<span class="w"> </span>&gt;<span class="w"> </span>report.txt
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>diagnose<span class="w"> </span>&gt;<span class="w"> </span>report.txt
 <a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>
 <a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="c1"># Include system info</span>
 <a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== System Info ===&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>report.txt
@@ -2708,7 +2708,7 @@
 <ol>
 <li><strong>Operating System</strong>: <code>uname -a</code> (MUST be Linux)</li>
 <li><strong>Python version</strong>: <code>python --version</code> (MUST be 3.11.x or 3.12.x)</li>
-<li><strong>NetIntel-OCR version</strong>: <code>netintel-ocr --version</code></li>
+<li><strong>NetIntel-OCR version</strong>: <code>netintel-ocr system version</code></li>
 <li><strong>Linux distribution</strong>: <code>cat /etc/os-release</code></li>
 <li><strong>Ollama models</strong>: <code>ollama list</code></li>
 <li><strong>Error messages and logs</strong></li>

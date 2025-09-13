@@ -1863,10 +1863,10 @@
 <h2 id="starting-mcp-server">Starting MCP Server<a class="headerlink" href="#starting-mcp-server" title="Permanent link">&para;</a></h2>
 <h3 id="basic-setup">Basic Setup<a class="headerlink" href="#basic-setup" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Start MCP server</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>netintel-ocr<span class="w"> </span>--mcp
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>mcp
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># With custom configuration</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>netintel-ocr<span class="w"> </span>--mcp<span class="w"> </span>--mcp-port<span class="w"> </span><span class="m">3000</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>mcp<span class="w"> </span>--mcp-port<span class="w"> </span><span class="m">3000</span>
 </code></pre></div>
 <h3 id="configuration-file">Configuration File<a class="headerlink" href="#configuration-file" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
@@ -1955,7 +1955,7 @@
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;mcp.servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="p">{</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;netintel-ocr&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;netintel-ocr --mcp&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;netintel-ocr server mcp&quot;</span><span class="p">,</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">      </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="nt">&quot;OLLAMA_HOST&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:11434&quot;</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">      </span><span class="p">}</span>
@@ -2073,7 +2073,7 @@
 <h2 id="all-in-one-mode">All-in-One Mode<a class="headerlink" href="#all-in-one-mode" title="Permanent link">&para;</a></h2>
 <p>Start with all services:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># MCP + API + Vector Store</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>netintel-ocr<span class="w"> </span>--all-in-one
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>all
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Services available:</span>
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># - MCP Server: port 3000</span>
@@ -2083,10 +2083,10 @@
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
 <h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Token authentication</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>netintel-ocr<span class="w"> </span>--mcp<span class="w"> </span>--mcp-token<span class="w"> </span>YOUR_SECRET_TOKEN
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>mcp<span class="w"> </span>--mcp-token<span class="w"> </span>YOUR_SECRET_TOKEN
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># mTLS authentication</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>netintel-ocr<span class="w"> </span>--mcp<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>mcp<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span>--mcp-cert<span class="w"> </span>server.crt<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span>--mcp-key<span class="w"> </span>server.key<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span>--mcp-ca<span class="w"> </span>ca.crt
@@ -2112,7 +2112,7 @@
 </code></pre></div>
 <h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Enable debug logging</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>netintel-ocr<span class="w"> </span>--mcp<span class="w"> </span>--mcp-log-level<span class="w"> </span>DEBUG
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>mcp<span class="w"> </span>--mcp-log-level<span class="w"> </span>DEBUG
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Log format</span>
 <a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="m">2024</span>-01-15<span class="w"> </span><span class="m">10</span>:30:45<span class="w"> </span><span class="o">[</span>MCP<span class="o">]</span><span class="w"> </span>Tool<span class="w"> </span>called:<span class="w"> </span>process_document

@@ -1849,7 +1849,7 @@
 <h2 id="document-ingestion">Document Ingestion<a class="headerlink" href="#document-ingestion" title="Permanent link">&para;</a></h2>
 <h3 id="basic-ingestion">Basic Ingestion<a class="headerlink" href="#basic-ingestion" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Process and ingest document</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>netintel-ocr<span class="w"> </span>--vector-store<span class="w"> </span>milvus<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>set-store<span class="w"> </span>milvus<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">             </span>--milvus-host<span class="w"> </span>localhost:19530<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">             </span>--ingest<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">             </span>document.pdf
@@ -1857,11 +1857,11 @@
 <h3 id="batch-ingestion">Batch Ingestion<a class="headerlink" href="#batch-ingestion" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Ingest multiple documents</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">for</span><span class="w"> </span>pdf<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.pdf<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>netintel-ocr<span class="w"> </span>--ingest<span class="w"> </span>--collection<span class="w"> </span>network-docs<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$pdf</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>--ingest<span class="w"> </span>--collection<span class="w"> </span>network-docs<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$pdf</span><span class="s2">&quot;</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">done</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Or use batch mode</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>netintel-ocr<span class="w"> </span>--batch-ingest<span class="w"> </span>--collection<span class="w"> </span>network-docs<span class="w"> </span>*.pdf
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>--collection<span class="w"> </span>network-docs<span class="w"> </span>*.pdf
 </code></pre></div>
 <h3 id="collection-configuration">Collection Configuration<a class="headerlink" href="#collection-configuration" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Define collection schema</span>
@@ -1892,20 +1892,20 @@
 </code></pre></div>
 <h3 id="custom-embedding-model">Custom Embedding Model<a class="headerlink" href="#custom-embedding-model" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Use specific embedding model</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>netintel-ocr<span class="w"> </span>--embedding-model<span class="w"> </span>all-MiniLM-L6-v2<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>embedding.model<span class="w"> </span>all-MiniLM-L6-v2<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">             </span>--ingest<span class="w"> </span>document.pdf
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># Or use Ollama embeddings</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>netintel-ocr<span class="w"> </span>--embedding-model<span class="w"> </span>ollama/nomic-embed-text<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>embedding.model<span class="w"> </span>ollama/nomic-embed-text<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">             </span>--ingest<span class="w"> </span>document.pdf
 </code></pre></div>
 <h2 id="search-queries">Search Queries<a class="headerlink" href="#search-queries" title="Permanent link">&para;</a></h2>
 <h3 id="cli-search">CLI Search<a class="headerlink" href="#cli-search" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Search for components</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>netintel-ocr<span class="w"> </span>--search<span class="w"> </span><span class="s2">&quot;firewall in DMZ zone&quot;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>search<span class="w"> </span><span class="s2">&quot;firewall in DMZ zone&quot;</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Search with filters</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>netintel-ocr<span class="w"> </span>--search<span class="w"> </span><span class="s2">&quot;router&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>search<span class="w"> </span><span class="s2">&quot;router&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">             </span>--filter<span class="w"> </span><span class="s2">&quot;security_zone=external&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">             </span>--limit<span class="w"> </span><span class="m">10</span>
 </code></pre></div>
@@ -2008,13 +2008,13 @@
 </code></pre></div>
 <h3 id="optimize-performance">Optimize Performance<a class="headerlink" href="#optimize-performance" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Compact collection</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>netintel-ocr<span class="w"> </span>--compact-collection<span class="w"> </span>network_components
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>compact<span class="w"> </span>network_components
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Build index</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>netintel-ocr<span class="w"> </span>--build-index<span class="w"> </span>network_components
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>build-index<span class="w"> </span>network_components
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># Load collection to memory</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>netintel-ocr<span class="w"> </span>--load-collection<span class="w"> </span>network_components
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>load<span class="w"> </span>network_components
 </code></pre></div>
 <h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
 <h3 id="cmdb-population">CMDB Population<a class="headerlink" href="#cmdb-population" title="Permanent link">&para;</a></h3>
@@ -2074,10 +2074,10 @@
 <h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link">&para;</a></h2>
 <h3 id="collection-statistics">Collection Statistics<a class="headerlink" href="#collection-statistics" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># View collection stats</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>netintel-ocr<span class="w"> </span>--collection-stats<span class="w"> </span>network_components
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>stats<span class="w"> </span>--collection<span class="w"> </span>network_components
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># Monitor query performance</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>netintel-ocr<span class="w"> </span>--query-stats<span class="w"> </span>--last<span class="w"> </span>24h
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>query-stats<span class="w"> </span>--last<span class="w"> </span>24h
 </code></pre></div>
 <h3 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Check Milvus health</span>

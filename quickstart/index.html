@@ -1991,7 +1991,7 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>pip<span class="w"> </span>install<span class="w"> </span>netintel-ocr<span class="o">==</span><span class="m">0</span>.1.17
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Verify installation</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>netintel-ocr<span class="w"> </span>--version
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>version
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Package Information</p>
@@ -2038,7 +2038,7 @@
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>curl<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/tags
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Or use config file</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>netintel-ocr<span class="w"> </span>--init
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>netintel-ocr<span class="w"> </span>project<span class="w"> </span>init
 </code></pre></div>
 <h3 id="model-selection">Model Selection<a class="headerlink" href="#model-selection" title="Permanent link">&para;</a></h3>
 <p>Specify models for different processing tasks:</p>
@@ -2080,16 +2080,16 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
 <h3 id="process-a-pdf-document">Process a PDF Document<a class="headerlink" href="#process-a-pdf-document" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Process entire document (KG enabled by default in v0.1.17)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>netintel-ocr<span class="w"> </span>document.pdf
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Process without Knowledge Graph extraction</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>netintel-ocr<span class="w"> </span>--no-kg<span class="w"> </span>document.pdf
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--no-kg
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Process specific pages</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>netintel-ocr<span class="w"> </span>--start<span class="w"> </span><span class="m">5</span><span class="w"> </span>--end<span class="w"> </span><span class="m">10</span><span class="w"> </span>document.pdf
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--pages<span class="w"> </span><span class="m">5</span>-10
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Enable debug output</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>document.pdf
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf
 </code></pre></div>
 <h3 id="example-network-architecture-document">Example: Network Architecture Document<a class="headerlink" href="#example-network-architecture-document" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>netintel-ocr<span class="w"> </span><span class="se">\</span>
@@ -2153,13 +2153,13 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 </div>
 <h3 id="basic-kg-processing">Basic KG Processing<a class="headerlink" href="#basic-kg-processing" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Process document with KG extraction (default)</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>netintel-ocr<span class="w"> </span>document.pdf
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Process with specific KG model</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>netintel-ocr<span class="w"> </span>--kg-model<span class="w"> </span>RotatE<span class="w"> </span>document.pdf
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--kg-model<span class="w"> </span>RotatE
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Disable KG if not needed</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>netintel-ocr<span class="w"> </span>--no-kg<span class="w"> </span>document.pdf
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--no-kg
 </code></pre></div>
 <h3 id="check-kg-requirements">Check KG Requirements<a class="headerlink" href="#check-kg-requirements" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Verify KG services are running</span>
@@ -2218,7 +2218,7 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 </code></pre></div>
 <h3 id="batch-processing-with-kg">Batch Processing with KG<a class="headerlink" href="#batch-processing-with-kg" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Process multiple documents into single KG</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>netintel-ocr<span class="w"> </span>--batch<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>--kg-model<span class="w"> </span>ComplEx<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>--collection<span class="w"> </span>network_docs<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--max-parallel<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
@@ -2331,7 +2331,7 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 <h3 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Process multiple documents</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">for</span><span class="w"> </span>pdf<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.pdf<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>netintel-ocr<span class="w"> </span>--output-dir<span class="w"> </span>processed/<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$pdf</span><span class="s2">&quot;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>--output-dir<span class="w"> </span>processed/<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$pdf</span><span class="s2">&quot;</span>
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="k">done</span>
 </code></pre></div>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
@@ -2356,13 +2356,13 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 </code></pre></div>
 <h3 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Use faster model for testing</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>netintel-ocr<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest<span class="w"> </span>document.pdf
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--network-model<span class="w"> </span>minicpm-v:latest
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
 <a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># Limit pages for large documents</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>netintel-ocr<span class="w"> </span>--start<span class="w"> </span><span class="m">1</span><span class="w"> </span>--end<span class="w"> </span><span class="m">20</span><span class="w"> </span>large-document.pdf
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>large-document.pdf<span class="w"> </span>--pages<span class="w"> </span><span class="m">1</span>-20
 <a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
 <a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1"># Disable context extraction for speed</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>netintel-ocr<span class="w"> </span>--no-context<span class="w"> </span>document.pdf
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>file<span class="w"> </span>document.pdf<span class="w"> </span>--no-context
 </code></pre></div>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
