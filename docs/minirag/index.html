@@ -1957,6 +1957,16 @@
 <h1 id="minirag-enhanced-retrieval-with-knowledge-graphs">MiniRAG - Enhanced Retrieval with Knowledge Graphs<a class="headerlink" href="#minirag-enhanced-retrieval-with-knowledge-graphs" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>MiniRAG is NetIntel-OCR's advanced Retrieval-Augmented Generation system that combines traditional vector search with Knowledge Graph context for more accurate, explainable, and context-aware answers. It leverages both structured graph data and unstructured text to provide comprehensive responses to complex queries.</p>
+<div class="admonition important">
+<p class="admonition-title">MiniRAG vs Ingestion Models</p>
+<p><strong>MiniRAG models</strong> are used AFTER document ingestion for Q&amp;A and retrieval:
+- <code>gemma3:4b-it-qat</code> - For generating answers to questions
+- <code>qwen3-embedding:8b</code> - For semantic search during retrieval</p>
+<p><strong>Ingestion models</strong> are used DURING PDF processing:
+- <code>qwen2.5vl:7b</code> - For analyzing network diagrams
+- <code>Nanonets-OCR-s:latest</code> - For OCR text extraction</p>
+<p>These are completely separate model sets serving different purposes!</p>
+</div>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────┐
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│           User Query                    │
@@ -1990,35 +2000,52 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Ensure NetIntel-OCR v0.1.17+ is installed</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>netintel-ocr&gt;<span class="o">=</span><span class="m">0</span>.1.17
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Start required services</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>falkordb<span class="w"> </span>milvus<span class="w"> </span>ollama
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Configure external Ollama server</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Verify MiniRAG components</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>netintel-ocr<span class="w"> </span>rag<span class="w"> </span>check
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Verify Ollama has MiniRAG models (NOT ingestion models)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>curl<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/tags<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.models[].name&#39;</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Output:</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># ✅ FalkorDB: Connected</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># ✅ Milvus: Connected  </span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># ✅ Ollama: Connected</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># ✅ MiniRAG: Ready</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># ✅ Available LLMs: llama3, mistral, qwen2.5</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># MiniRAG MODELS ONLY (for Q&amp;A after ingestion):</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># - qwen3-embedding:8b (for semantic search embeddings)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># - gemma3:4b-it-qat (for answer generation)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Pull MiniRAG models if missing</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen3-embedding:8b&quot;}&#39;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;gemma3:4b-it-qat&quot;}&#39;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1"># Note: Ingestion models (qwen2.5vl:7b, Nanonets-OCR-s) are separate!</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1"># Start required graph/vector services</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>falkordb<span class="w"> </span>milvus
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1"># Verify MiniRAG components</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>netintel-ocr<span class="w"> </span>rag<span class="w"> </span>check
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="c1"># Output:</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="c1"># ✅ FalkorDB: Connected</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="c1"># ✅ Milvus: Connected  </span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="c1"># ✅ Ollama: Connected (http://your-ollama-server:11434)</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="c1"># ✅ MiniRAG: Ready</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="c1"># ✅ Available Models: qwen3-embedding:8b, gemma3:4b-it-qat</span>
 </code></pre></div>
 <h3 id="initialize-minirag">Initialize MiniRAG<a class="headerlink" href="#initialize-minirag" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Basic initialization</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Initialize MiniRAG with Q&amp;A models (NOT ingestion models)</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>netintel-ocr<span class="w"> </span>rag<span class="w"> </span>init<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--collection<span class="w"> </span>network_docs<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--llm-model<span class="w"> </span>llama3<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--embedding-model<span class="w"> </span>nomic-embed-text
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--llm-model<span class="w"> </span>gemma3:4b-it-qat<span class="w"> </span><span class="se">\ </span><span class="w">      </span><span class="c1"># MiniRAG answer generation</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--embedding-model<span class="w"> </span>qwen3-embedding:8b<span class="w">  </span><span class="c1"># MiniRAG semantic search</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Advanced initialization with custom settings</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>netintel-ocr<span class="w"> </span>rag<span class="w"> </span>init<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--collection<span class="w"> </span>production_infrastructure<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>--llm-model<span class="w"> </span>gpt-4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>--embedding-model<span class="w"> </span>text-embedding-3-large<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>--llm-model<span class="w"> </span>gemma3:4b-it-qat<span class="w"> </span><span class="se">\ </span><span class="w">       </span><span class="c1"># MiniRAG model (NOT ingestion)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>--embedding-model<span class="w"> </span>qwen3-embedding:8b<span class="w"> </span><span class="se">\ </span><span class="c1"># MiniRAG model (NOT ingestion)</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>--chunk-size<span class="w"> </span><span class="m">512</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span>--chunk-overlap<span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span>--temperature<span class="w"> </span><span class="m">0</span>.7<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span>--max-tokens<span class="w"> </span><span class="m">2000</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span>--max-tokens<span class="w"> </span><span class="m">2000</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span>--ollama-host<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>
 </code></pre></div>
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
 <h3 id="simple-question-answering">Simple Question Answering<a class="headerlink" href="#simple-question-answering" title="Permanent link">&para;</a></h3>
@@ -2544,37 +2571,43 @@
 <a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sources: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;sources&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="python-sdk">Python SDK<a class="headerlink" href="#python-sdk" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">netintel_ocr.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">MiniRAG</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># Initialize MiniRAG</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">rag</span> <span class="o">=</span> <span class="n">MiniRAG</span><span class="p">(</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;network_docs&quot;</span><span class="p">,</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="n">llm_model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">retrieval_strategy</span><span class="o">=</span><span class="s2">&quot;adaptive&quot;</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="p">)</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="c1"># Query</span>
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="n">result</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>    <span class="n">question</span><span class="o">=</span><span class="s2">&quot;What are the backup procedures?&quot;</span><span class="p">,</span>
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>    <span class="n">include_context</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">500</span>
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="p">)</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
-<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieved from: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">sources</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Confidence: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>
-<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="c1"># Batch processing</span>
-<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="n">questions</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>    <span class="s2">&quot;What is the network capacity?&quot;</span><span class="p">,</span>
-<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>    <span class="s2">&quot;How many servers do we have?&quot;</span><span class="p">,</span>
-<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a>    <span class="s2">&quot;What is the DR strategy?&quot;</span>
-<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="p">]</span>
-<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a>
-<a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="n">results</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">batch_query</span><span class="p">(</span><span class="n">questions</span><span class="p">)</span>
-<a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a><span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">questions</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
-<a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Q: </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">answer</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">netintel_ocr.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">MiniRAG</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Configure external Ollama</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OLLAMA_HOST&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># Initialize MiniRAG</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="n">rag</span> <span class="o">=</span> <span class="n">MiniRAG</span><span class="p">(</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    <span class="n">collection</span><span class="o">=</span><span class="s2">&quot;network_docs&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>    <span class="n">llm_model</span><span class="o">=</span><span class="s2">&quot;gemma3:4b-it-qat&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>    <span class="n">embedding_model</span><span class="o">=</span><span class="s2">&quot;qwen3-embedding:8b&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>    <span class="n">retrieval_strategy</span><span class="o">=</span><span class="s2">&quot;adaptive&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>    <span class="n">ollama_host</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;OLLAMA_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;http://localhost:11434&#39;</span><span class="p">)</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="p">)</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="c1"># Query</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="n">result</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>    <span class="n">question</span><span class="o">=</span><span class="s2">&quot;What are the backup procedures?&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>    <span class="n">include_context</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">500</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="p">)</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieved from: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">sources</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Confidence: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a>
+<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="c1"># Batch processing</span>
+<a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="n">questions</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a>    <span class="s2">&quot;What is the network capacity?&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a>    <span class="s2">&quot;How many servers do we have?&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a>    <span class="s2">&quot;What is the DR strategy?&quot;</span>
+<a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a><span class="p">]</span>
+<a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a>
+<a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a><span class="n">results</span> <span class="o">=</span> <span class="n">rag</span><span class="o">.</span><span class="n">batch_query</span><span class="p">(</span><span class="n">questions</span><span class="p">)</span>
+<a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a><span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">questions</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+<a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Q: </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">answer</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
@@ -2605,7 +2638,7 @@
 <a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="c1">#    Context size: 2048 tokens</span>
 <a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a><span class="c1"># </span>
 <a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a><span class="c1"># 5. LLM Generation (234ms)</span>
-<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a><span class="c1">#    Model: gpt-4</span>
+<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a><span class="c1">#    Model: gemma3:4b-it-qat</span>
 <a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="c1">#    Tokens: 450</span>
 <a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a><span class="c1"># </span>
 <a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a><span class="c1"># Total Time: 403ms</span>

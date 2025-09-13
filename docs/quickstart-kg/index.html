@@ -1534,12 +1534,39 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install NetIntel-OCR (KG included by default in v0.1.17+)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip<span class="w"> </span>install<span class="w"> </span>netintel-ocr
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Start required services with Docker</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>falkordb<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span>:6379<span class="w"> </span>falkordb/falkordb
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>milvus<span class="w"> </span>-p<span class="w"> </span><span class="m">19530</span>:19530<span class="w"> </span>milvusdb/milvus:latest
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Verify everything is ready</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>check-requirements
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Configure external Ollama server</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Verify Ollama has required models</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>curl<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/tags<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.models[].name&#39;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># IMPORTANT: Different models serve different purposes</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># ================================================</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># INGESTION MODELS (for processing PDFs):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># - qwen2.5vl:7b (for network/diagram analysis during ingestion)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># - Nanonets-OCR-s:latest (for OCR during ingestion)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1">#</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># MINIRAG MODELS (for Q&amp;A after ingestion):</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># - gemma3:4b-it-qat (for LLM inference/generation)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># - qwen3-embedding:8b (for semantic search embeddings)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="c1"># Pull INGESTION models (for PDF processing)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen2.5vl:7b&quot;}&#39;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Nanonets-OCR-s:latest&quot;}&#39;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1"># Pull MINIRAG models (for Q&amp;A)</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;gemma3:4b-it-qat&quot;}&#39;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen3-embedding:8b&quot;}&#39;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1"># Start required graph/vector services with Docker</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>falkordb<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span>:6379<span class="w"> </span>falkordb/falkordb
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>milvus<span class="w"> </span>-p<span class="w"> </span><span class="m">19530</span>:19530<span class="w"> </span>milvusdb/milvus:latest
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1"># Verify everything is ready</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>check-requirements
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="c1"># ✅ Ollama: Connected (http://your-ollama-server:11434)</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="c1"># ✅ FalkorDB: Connected (localhost:6379)</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="c1"># ✅ Milvus: Connected (localhost:19530)</span>
 </code></pre></div>
 <h2 id="basic-workflow">Basic Workflow<a class="headerlink" href="#basic-workflow" title="Permanent link">&para;</a></h2>
 <h3 id="1-process-your-first-document">1. Process Your First Document<a class="headerlink" href="#1-process-your-first-document" title="Permanent link">&para;</a></h3>

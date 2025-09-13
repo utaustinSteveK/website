@@ -859,9 +859,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#database-configuration" class="md-nav__link">
+  <a href="#external-services-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Database Configuration
+      External Services Configuration
     </span>
   </a>
   
@@ -990,13 +990,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-with-rag" class="md-nav__link">
+  <a href="#integration-with-minirag" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration with RAG
+      Integration with MiniRAG
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Integration with RAG">
+    <nav class="md-nav" aria-label="Integration with MiniRAG">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1727,9 +1727,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#database-configuration" class="md-nav__link">
+  <a href="#external-services-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Database Configuration
+      External Services Configuration
     </span>
   </a>
   
@@ -1858,13 +1858,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-with-rag" class="md-nav__link">
+  <a href="#integration-with-minirag" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration with RAG
+      Integration with MiniRAG
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Integration with RAG">
+    <nav class="md-nav" aria-label="Integration with MiniRAG">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2137,6 +2137,17 @@
 <h1 id="knowledge-graph-processing">Knowledge Graph Processing<a class="headerlink" href="#knowledge-graph-processing" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>NetIntel-OCR v0.1.17 introduces powerful Knowledge Graph (KG) capabilities that automatically extract and structure relationships from your network documentation. The system creates semantic graphs from network diagrams, flow charts, and technical text, enabling advanced querying and relationship analysis.</p>
+<div class="admonition important">
+<p class="admonition-title">Model Categories</p>
+<p>NetIntel-OCR uses two distinct categories of models:</p>
+<p><strong>INGESTION MODELS</strong> (for PDF processing):
+- <code>qwen2.5vl:7b</code> - Network diagram analysis
+- <code>Nanonets-OCR-s:latest</code> - OCR text extraction</p>
+<p><strong>MINIRAG MODELS</strong> (for Q&amp;A after ingestion):
+- <code>gemma3:4b-it-qat</code> - Answer generation
+- <code>qwen3-embedding:8b</code> - Semantic search</p>
+<p>These are separate model sets - ingestion models process documents, MiniRAG models enable Q&amp;A!</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">New in v0.1.17</p>
 <p>Knowledge Graph processing is <strong>enabled by default</strong> in v0.1.17. No additional flags needed!</p>
@@ -2202,17 +2213,28 @@
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>--kg-batch-size<span class="w"> </span><span class="m">384</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>document.pdf
 </code></pre></div>
-<h3 id="database-configuration">Database Configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Custom FalkorDB host/port</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>netintel-ocr<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--falkordb-host<span class="w"> </span><span class="m">192</span>.168.1.100<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--falkordb-port<span class="w"> </span><span class="m">6379</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>document.pdf
+<h3 id="external-services-configuration">External Services Configuration<a class="headerlink" href="#external-services-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Configure external Ollama server</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Verify Ollama models are available</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>curl<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/tags<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.models[].name&#39;</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Using environment variables</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">FALKORDB_HOST</span><span class="o">=</span>falkordb.local
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">export</span><span class="w"> </span><span class="nv">FALKORDB_PORT</span><span class="o">=</span><span class="m">6379</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>netintel-ocr<span class="w"> </span>document.pdf
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Models for different purposes:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># INGESTION: qwen2.5vl:7b, Nanonets-OCR-s:latest</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># MINIRAG: gemma3:4b-it-qat, qwen3-embedding:8b</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># Custom FalkorDB host/port</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>netintel-ocr<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span>--falkordb-host<span class="w"> </span><span class="m">192</span>.168.1.100<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span>--falkordb-port<span class="w"> </span><span class="m">6379</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span>document.pdf
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1"># Using environment variables</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nb">export</span><span class="w"> </span><span class="nv">FALKORDB_HOST</span><span class="o">=</span>falkordb.local
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="nb">export</span><span class="w"> </span><span class="nv">FALKORDB_PORT</span><span class="o">=</span><span class="m">6379</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://192.168.1.100:11434&quot;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>netintel-ocr<span class="w"> </span>document.pdf
 </code></pre></div>
 <h2 id="processing-modes">Processing Modes<a class="headerlink" href="#processing-modes" title="Permanent link">&para;</a></h2>
 <h3 id="network-diagrams">Network Diagrams<a class="headerlink" href="#network-diagrams" title="Permanent link">&para;</a></h3>
@@ -2239,8 +2261,8 @@
 <li>Captures decision points and branches</li>
 <li>Associates metadata and conditions</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Process with flow detection</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>netintel-ocr<span class="w"> </span>--flow-model<span class="w"> </span>qwen2.5vl:7b<span class="w"> </span>document.pdf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Process with flow detection (uses INGESTION model)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>netintel-ocr<span class="w"> </span>--flow-model<span class="w"> </span>qwen2.5vl:7b<span class="w"> </span>document.pdf<span class="w">  </span><span class="c1"># Ingestion model, NOT MiniRAG</span>
 </code></pre></div>
 <h3 id="hybrid-processing">Hybrid Processing<a class="headerlink" href="#hybrid-processing" title="Permanent link">&para;</a></h3>
 <p>Combines multiple extraction methods:</p>
@@ -2312,14 +2334,19 @@
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--kg-merge-strategy<span class="w"> </span>union<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>/docs/**/*.pdf
 </code></pre></div>
-<h2 id="integration-with-rag">Integration with RAG<a class="headerlink" href="#integration-with-rag" title="Permanent link">&para;</a></h2>
+<h2 id="integration-with-minirag">Integration with MiniRAG<a class="headerlink" href="#integration-with-minirag" title="Permanent link">&para;</a></h2>
 <h3 id="enhanced-retrieval">Enhanced Retrieval<a class="headerlink" href="#enhanced-retrieval" title="Permanent link">&para;</a></h3>
-<p>The KG system enhances RAG (Retrieval Augmented Generation) with:</p>
+<p>The KG system enhances MiniRAG (Retrieval Augmented Generation) with:</p>
 <ul>
 <li><strong>Graph-aware context</strong>: Include related entities in context</li>
 <li><strong>Path-based retrieval</strong>: Follow relationships for comprehensive answers</li>
 <li><strong>Hybrid scoring</strong>: Combine vector similarity with graph distance</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">MiniRAG Models</p>
+<p>MiniRAG uses its own models (<code>gemma3:4b-it-qat</code>, <code>qwen3-embedding:8b</code>) for Q&amp;A,
+which are separate from the ingestion models used during PDF processing.</p>
+</div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Enable enhanced RAG</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>netintel-ocr<span class="w"> </span>--rag-enhanced<span class="w"> </span>document.pdf
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
@@ -2395,13 +2422,14 @@
 <a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
 <a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FALKORDB_HOST=falkordb</span>
 <a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MILVUS_HOST=milvus:19530</span>
-<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./documents:/documents</span>
-<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./output:/output</span>
-<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>
-<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="nt">volumes</span><span class="p">:</span>
-<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="w">  </span><span class="nt">falkordb_data</span><span class="p">:</span>
-<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="w">  </span><span class="nt">milvus_data</span><span class="p">:</span>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OLLAMA_HOST=http://your-ollama-server:11434</span><span class="w">  </span><span class="c1"># External Ollama</span>
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./documents:/documents</span>
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./output:/output</span>
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="w">  </span><span class="nt">falkordb_data</span><span class="p">:</span>
+<a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="w">  </span><span class="nt">milvus_data</span><span class="p">:</span>
 </code></pre></div>
 <p>Start the stack:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.kg.yml<span class="w"> </span>up<span class="w"> </span>-d
@@ -2412,11 +2440,12 @@
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>netintel<span class="w"> </span>https://visionml.net/helm
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="c1"># Install with KG enabled</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="c1"># Install with KG enabled and external Ollama</span>
 <a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>helm<span class="w"> </span>install<span class="w"> </span>netintel-ocr<span class="w"> </span>netintel/netintel-ocr<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span>--set<span class="w"> </span>kg.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span>--set<span class="w"> </span>falkordb.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span>--set<span class="w"> </span>milvus.enabled<span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span>--set<span class="w"> </span>milvus.enabled<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span>--set<span class="w"> </span>ollama.host<span class="o">=</span><span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
 </code></pre></div>
 <h3 id="custom-values">Custom Values<a class="headerlink" href="#custom-values" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># values-kg.yaml</span>
@@ -2426,15 +2455,18 @@
 <a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="nt">epochs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150</span>
 <a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="nt">batchSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">384</span>
 <a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nt">falkordb</span><span class="p">:</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span><span class="nt">persistence</span><span class="p">:</span>
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nt">milvus</span><span class="p">:</span>
-<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">  </span><span class="nt">persistence</span><span class="p">:</span>
-<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50Gi</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nt">ollama</span><span class="p">:</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://your-ollama-server:11434&quot;</span><span class="w">  </span><span class="c1"># External Ollama server</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nt">falkordb</span><span class="p">:</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">  </span><span class="nt">persistence</span><span class="p">:</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="nt">milvus</span><span class="p">:</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">  </span><span class="nt">persistence</span><span class="p">:</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50Gi</span>
 </code></pre></div>
 <h2 id="monitoring-analytics">Monitoring &amp; Analytics<a class="headerlink" href="#monitoring-analytics" title="Permanent link">&para;</a></h2>
 <h3 id="kg-statistics">KG Statistics<a class="headerlink" href="#kg-statistics" title="Permanent link">&para;</a></h3>
@@ -2494,30 +2526,35 @@
 </code></pre></div>
 <h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
 <h3 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">netintel_ocr.kg</span><span class="w"> </span><span class="kn">import</span> <span class="n">KnowledgeGraphSystem</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="c1"># Initialize KG system</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="n">kg_system</span> <span class="o">=</span> <span class="n">KnowledgeGraphSystem</span><span class="p">(</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="n">falkordb_host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    <span class="n">falkordb_port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span>
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;RotatE&quot;</span><span class="p">,</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span>
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="p">)</span>
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="c1"># Process document</span>
-<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="n">graph</span> <span class="o">=</span> <span class="n">kg_system</span><span class="o">.</span><span class="n">process_document</span><span class="p">(</span><span class="s2">&quot;document.pdf&quot;</span><span class="p">)</span>
-<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>
-<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="c1"># Query graph</span>
-<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="n">results</span> <span class="o">=</span> <span class="n">kg_system</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>    <span class="n">query_type</span><span class="o">=</span><span class="s2">&quot;entity_centric&quot;</span><span class="p">,</span>
-<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>    <span class="n">entity</span><span class="o">=</span><span class="s2">&quot;Router-A&quot;</span>
-<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="p">)</span>
-<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>
-<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="c1"># Export graph</span>
-<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="n">kg_system</span><span class="o">.</span><span class="n">export</span><span class="p">(</span>
-<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;cypher&quot;</span><span class="p">,</span>
-<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>    <span class="n">output</span><span class="o">=</span><span class="s2">&quot;network_graph.cypher&quot;</span>
-<a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">netintel_ocr.kg</span><span class="w"> </span><span class="kn">import</span> <span class="n">KnowledgeGraphSystem</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Configure external Ollama</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OLLAMA_HOST&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># Initialize KG system</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="n">kg_system</span> <span class="o">=</span> <span class="n">KnowledgeGraphSystem</span><span class="p">(</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>    <span class="n">falkordb_host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>    <span class="n">falkordb_port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;RotatE&quot;</span><span class="p">,</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>    <span class="n">ollama_host</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;OLLAMA_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;http://localhost:11434&#39;</span><span class="p">)</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="p">)</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="c1"># Process document</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="n">graph</span> <span class="o">=</span> <span class="n">kg_system</span><span class="o">.</span><span class="n">process_document</span><span class="p">(</span><span class="s2">&quot;document.pdf&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="c1"># Query graph</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="n">results</span> <span class="o">=</span> <span class="n">kg_system</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>    <span class="n">query_type</span><span class="o">=</span><span class="s2">&quot;entity_centric&quot;</span><span class="p">,</span>
+<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>    <span class="n">entity</span><span class="o">=</span><span class="s2">&quot;Router-A&quot;</span>
+<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a><span class="p">)</span>
+<a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a>
+<a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a><span class="c1"># Export graph</span>
+<a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a><span class="n">kg_system</span><span class="o">.</span><span class="n">export</span><span class="p">(</span>
+<a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a>    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;cypher&quot;</span><span class="p">,</span>
+<a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a>    <span class="n">output</span><span class="o">=</span><span class="s2">&quot;network_graph.cypher&quot;</span>
+<a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a><span class="p">)</span>
 </code></pre></div>
 <h3 id="rest-api">REST API<a class="headerlink" href="#rest-api" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Process with KG</span>
