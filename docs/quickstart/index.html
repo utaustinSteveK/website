@@ -563,6 +563,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Install NetIntel-OCR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-your-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choose Your Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1513,6 +1537,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Install NetIntel-OCR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-your-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choose Your Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1793,9 +1841,10 @@
 
 <h1 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link">&para;</a></h1>
 <div class="admonition tip">
-<p class="admonition-title">New in v0.1.17: Hierarchical CLI &amp; Knowledge Graph</p>
-<p>NetIntel-OCR v0.1.17 features a <strong>completely redesigned hierarchical CLI</strong> organized by capabilities, plus automatic Knowledge Graph extraction! The new command structure makes features more discoverable and consistent. Knowledge Graph is <strong>enabled by default</strong> - use <code>--no-kg</code> to disable if not needed.</p>
-<p><a href="../cli-reference/">Learn more about the new CLI →</a> | <a href="../knowledge-graph/">Learn more about Knowledge Graph →</a></p>
+<p class="admonition-title">New in v0.1.17.1: Modular Installation &amp; Enhanced Version Display</p>
+<p>NetIntel-OCR v0.1.17.1 introduces <strong>modular installation</strong> (reducing base install from 2.5GB to 500MB) and <strong>enhanced version display</strong> showing all capabilities!</p>
+<p>The v0.1.17 hierarchical CLI is retained with 8 command groups for better organization. Knowledge Graph is optional but recommended.</p>
+<p><a href="../installation/">Installation Options →</a> | <a href="../cli-reference/">New CLI Reference →</a> | <a href="../knowledge-graph/">Knowledge Graph →</a></p>
 </div>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <h3 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
@@ -1837,77 +1886,97 @@
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
 </code></pre></div>
 <h3 id="install-netintel-ocr">Install NetIntel-OCR<a class="headerlink" href="#install-netintel-ocr" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Ensure you&#39;re using Python 3.11 or 3.12</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>--version<span class="w">  </span><span class="c1"># Should show 3.11.x or 3.12.x</span>
+<h4 id="choose-your-installation">Choose Your Installation<a class="headerlink" href="#choose-your-installation" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Option 1: Base installation (500MB) - Core OCR only</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>netintel-ocr
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Install latest version from PyPI (includes KG support)</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>pip<span class="w"> </span>install<span class="w"> </span>netintel-ocr
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Option 2: With Knowledge Graph (+1.5GB) - Recommended</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;netintel-ocr[kg]&quot;</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Or install specific version</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>pip<span class="w"> </span>install<span class="w"> </span>netintel-ocr<span class="o">==</span><span class="m">0</span>.1.17
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Option 3: Production setup (+2GB) - KG + Vector + API</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;netintel-ocr[production]&quot;</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Verify installation</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>netintel-ocr<span class="w"> </span>--version
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Output: NetIntel-OCR, version 0.1.17</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Check system info</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>version
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Option 4: Everything (+2.5GB) - All features</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;netintel-ocr[all]&quot;</span>
+</code></pre></div>
+<h4 id="verify-installation">Verify Installation<a class="headerlink" href="#verify-installation" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Check version and installed modules (NEW in v0.1.17.1!)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>netintel-ocr<span class="w"> </span>--version
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Example output showing what&#39;s installed:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># NetIntel-OCR v0.1.17.1</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># ├── Core Components:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># │   ├── C++ Core: ✓ v1.0.1</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># │   ├── AVX2: ✓</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># │   └── Platform: Linux x86_64</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># ├── Installed Modules:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># │   ├── [base] Core OCR: ✓ (always installed)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># │   ├── [kg] Knowledge Graph: ✓ (pykeen 1.10.1)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># │   └── [vector] Vector Store: ✗ (not installed)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1"># ├── Available for Install:</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># │   └── [vector] Vector Store: pip install netintel-ocr[vector]</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1"># └── Active Features:</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1">#     ├── FalkorDB: ✓ (connected to localhost:6379)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="c1">#     └── Ollama: ✓ (connected to localhost:11434)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="c1"># Get detailed JSON output</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>netintel-ocr<span class="w"> </span>--version<span class="w"> </span>--json
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Package Information</p>
-<p>NetIntel-OCR is available on PyPI: https://pypi.org/project/netintel-ocr/</p>
-<p>Check for latest versions and release notes on the PyPI page.</p>
+<p>NetIntel-OCR v0.1.17.1 is available on PyPI with modular installation options.</p>
+<p>See <a href="../installation/">Installation Guide</a> for all options.</p>
 </div>
 <h3 id="configure-external-ollama-server">Configure External Ollama Server<a class="headerlink" href="#configure-external-ollama-server" title="Permanent link">&para;</a></h3>
 <p>NetIntel-OCR requires an external Ollama server with different models for different purposes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Configure external Ollama server</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Verify Ollama has required models</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>curl<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/tags<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.models[].name&#39;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># IMPORTANT: Models serve different purposes</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># ==========================================</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># INGESTION MODELS (for processing PDFs):</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># - qwen2.5vl:7b (network diagram analysis)</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># - Nanonets-OCR-s:latest (OCR text extraction)</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1">#</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># MINIRAG MODELS (for Q&amp;A after ingestion):</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1"># - gemma3:4b-it-qat (answer generation)</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># - qwen3-embedding:8b (semantic search)</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1"># Pull INGESTION models (for PDF processing)</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen2.5vl:7b&quot;}&#39;</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Nanonets-OCR-s:latest&quot;}&#39;</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="c1"># Pull MINIRAG models (for Q&amp;A after ingestion)</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;gemma3:4b-it-qat&quot;}&#39;</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen3-embedding:8b&quot;}&#39;</span>
-<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
-<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="c1"># Optional: Pull alternative models</span>
-<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;llava:13b&quot;}&#39;</span><span class="w">        </span><span class="c1"># Alternative vision model</span>
-<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;minicpm-v:latest&quot;}&#39;</span><span class="w">  </span><span class="c1"># Lightweight option</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Configure external Ollama server</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://your-ollama-server:11434&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Verify Ollama has required models</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>curl<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/tags<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.models[].name&#39;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># IMPORTANT: Models serve different purposes</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># ==========================================</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># INGESTION MODELS (for processing PDFs):</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># - qwen2.5vl:7b (network diagram analysis)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># - Nanonets-OCR-s:latest (OCR text extraction)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1">#</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># MINIRAG MODELS (for Q&amp;A after ingestion):</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="c1"># - gemma3:4b-it-qat (answer generation)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># - qwen3-embedding:8b (semantic search)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1"># Pull INGESTION models (for PDF processing)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen2.5vl:7b&quot;}&#39;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Nanonets-OCR-s:latest&quot;}&#39;</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="c1"># Pull MINIRAG models (for Q&amp;A after ingestion)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;gemma3:4b-it-qat&quot;}&#39;</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen3-embedding:8b&quot;}&#39;</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="c1"># Optional: Pull alternative models</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;llava:13b&quot;}&#39;</span><span class="w">        </span><span class="c1"># Alternative vision model</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;minicpm-v:latest&quot;}&#39;</span><span class="w">  </span><span class="c1"># Lightweight option</span>
 </code></pre></div>
 <h2 id="quick-configuration">Quick Configuration<a class="headerlink" href="#quick-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="using-configuration-templates-new-in-v0117">Using Configuration Templates (NEW in v0.1.17)<a class="headerlink" href="#using-configuration-templates-new-in-v0117" title="Permanent link">&para;</a></h3>
 <p>NetIntel-OCR v0.1.17 provides pre-configured templates for different scenarios:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># List available templates</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>template<span class="w"> </span>list
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Available templates:</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># - minimal: Single-user local setup</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># - development: Development environment</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># - staging: Staging server configuration</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># - production: Production deployment</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># - enterprise: Full enterprise features</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># - cloud: Cloud-native deployment</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># Quick start with minimal template</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>template<span class="w"> </span>apply<span class="w"> </span>minimal<span class="w"> </span>--output<span class="w"> </span>config.json
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>use<span class="w"> </span>config.json
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># Or use development template for more features</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>template<span class="w"> </span>apply<span class="w"> </span>development<span class="w"> </span>--output<span class="w"> </span>dev.json
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>netintel-ocr<span class="w"> </span>--config<span class="w"> </span>dev.json<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># List available templates</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>template<span class="w"> </span>list
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Available templates:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># - minimal: Single-user local setup</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># - development: Development environment</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># - staging: Staging server configuration</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># - production: Production deployment</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># - enterprise: Full enterprise features</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># - cloud: Cloud-native deployment</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># Quick start with minimal template</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>template<span class="w"> </span>apply<span class="w"> </span>minimal<span class="w"> </span>--output<span class="w"> </span>config.json
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>use<span class="w"> </span>config.json
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># Or use development template for more features</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>netintel-ocr<span class="w"> </span>config<span class="w"> </span>template<span class="w"> </span>apply<span class="w"> </span>development<span class="w"> </span>--output<span class="w"> </span>dev.json
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>netintel-ocr<span class="w"> </span>--config<span class="w"> </span>dev.json<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf
 </code></pre></div>
 <h3 id="model-selection">Model Selection<a class="headerlink" href="#model-selection" title="Permanent link">&para;</a></h3>
 <div class="admonition important">
@@ -1953,103 +2022,103 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 <p>Old: <code>netintel-ocr document.pdf</code></p>
 <p>New: <code>netintel-ocr process pdf document.pdf</code></p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Process entire document (KG enabled by default in v0.1.17)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Process without Knowledge Graph extraction</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--no-kg
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Process specific pages</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--start<span class="w"> </span><span class="m">5</span><span class="w"> </span>--end<span class="w"> </span><span class="m">10</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Extract only text</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--text-only
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># Extract only network diagrams</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--network-only
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1"># Extract tables</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--extract-tables
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="c1"># Enable debug output</span>
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Process entire document (KG enabled by default in v0.1.17)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Process without Knowledge Graph extraction</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--no-kg
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Process specific pages</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--start<span class="w"> </span><span class="m">5</span><span class="w"> </span>--end<span class="w"> </span><span class="m">10</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Extract only text</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--text-only
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># Extract only network diagrams</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--network-only
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># Extract tables</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf<span class="w"> </span>--extract-tables
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1"># Enable debug output</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>netintel-ocr<span class="w"> </span>--debug<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>document.pdf
 </code></pre></div>
 <h3 id="example-network-architecture-document">Example: Network Architecture Document<a class="headerlink" href="#example-network-architecture-document" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Using new v0.1.17 CLI structure</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>cisco-sdwan-design-guide.pdf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--model<span class="w"> </span>Nanonets-OCR-s:latest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--network-model<span class="w"> </span>qwen2.5vl:7b<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--start<span class="w"> </span><span class="m">5</span><span class="w"> </span>--end<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>--output<span class="w"> </span>results.json<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span>--debug
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Using new v0.1.17 CLI structure</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>cisco-sdwan-design-guide.pdf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--model<span class="w"> </span>Nanonets-OCR-s:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--network-model<span class="w"> </span>qwen2.5vl:7b<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--start<span class="w"> </span><span class="m">5</span><span class="w"> </span>--end<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span>--output<span class="w"> </span>results.json<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span>--debug
 </code></pre></div>
 <p>Output structure:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>output/
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── cisco-sdwan-design-guide/
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>│   ├── page_005.md          # Extracted text
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│   ├── page_006_network.md  # Network diagram with Mermaid
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│   ├── page_007.md          # Regular page
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│   ├── summary.json         # Processing summary
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│   ├── kg_entities.json     # Extracted entities (v0.1.17)
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│   ├── kg_relations.cypher  # Graph relationships (v0.1.17)
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>│   └── kg_embeddings.npy    # Learned embeddings (v0.1.17)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>output/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── cisco-sdwan-design-guide/
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│   ├── page_005.md          # Extracted text
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│   ├── page_006_network.md  # Network diagram with Mermaid
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│   ├── page_007.md          # Regular page
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│   ├── summary.json         # Processing summary
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│   ├── kg_entities.json     # Extracted entities (v0.1.17)
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│   ├── kg_relations.cypher  # Graph relationships (v0.1.17)
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>│   └── kg_embeddings.npy    # Learned embeddings (v0.1.17)
 </code></pre></div></p>
 <h2 id="batch-processing">Batch Processing<a class="headerlink" href="#batch-processing" title="Permanent link">&para;</a></h2>
 <p>Process multiple PDFs efficiently:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Process entire directory</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>/path/to/pdfs/<span class="w"> </span>--output-dir<span class="w"> </span>results/
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Process with parallel workers</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>/path/to/pdfs/<span class="w"> </span>--parallel<span class="w"> </span><span class="m">4</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Process from file list</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;doc1.pdf\ndoc2.pdf\ndoc3.pdf&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>file_list.txt
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>file_list.txt
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># Watch directory for new PDFs</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>watch<span class="w"> </span>/input/folder<span class="w"> </span>--pattern<span class="w"> </span><span class="s2">&quot;*.pdf&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Process entire directory</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>/path/to/pdfs/<span class="w"> </span>--output-dir<span class="w"> </span>results/
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Process with parallel workers</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>/path/to/pdfs/<span class="w"> </span>--parallel<span class="w"> </span><span class="m">4</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Process from file list</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;doc1.pdf\ndoc2.pdf\ndoc3.pdf&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>file_list.txt
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>batch<span class="w"> </span>file_list.txt
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1"># Watch directory for new PDFs</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>watch<span class="w"> </span>/input/folder<span class="w"> </span>--pattern<span class="w"> </span><span class="s2">&quot;*.pdf&quot;</span>
 </code></pre></div>
 <h2 id="query-processed-data">Query Processed Data<a class="headerlink" href="#query-processed-data" title="Permanent link">&para;</a></h2>
 <h3 id="database-queries">Database Queries<a class="headerlink" href="#database-queries" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Search for specific content</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;firewall configuration&quot;</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Query with filters</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;router&quot;</span><span class="w"> </span>--limit<span class="w"> </span><span class="m">10</span><span class="w"> </span>--threshold<span class="w"> </span><span class="m">0</span>.8
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Export results</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;network topology&quot;</span><span class="w"> </span>--format<span class="w"> </span>json<span class="w"> </span>&gt;<span class="w"> </span>results.json
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Search for specific content</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;firewall configuration&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Query with filters</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;router&quot;</span><span class="w"> </span>--limit<span class="w"> </span><span class="m">10</span><span class="w"> </span>--threshold<span class="w"> </span><span class="m">0</span>.8
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Export results</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>netintel-ocr<span class="w"> </span>db<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;network topology&quot;</span><span class="w"> </span>--format<span class="w"> </span>json<span class="w"> </span>&gt;<span class="w"> </span>results.json
 </code></pre></div>
 <h3 id="knowledge-graph-queries-new">Knowledge Graph Queries (NEW)<a class="headerlink" href="#knowledge-graph-queries-new" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Query knowledge graph</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;show all routers&quot;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># RAG-enhanced query</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>rag-query<span class="w"> </span><span class="s2">&quot;What are the security vulnerabilities?&quot;</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Visualize graph</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>visualize<span class="w"> </span>--output<span class="w"> </span>network-graph.html
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Query knowledge graph</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;show all routers&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># RAG-enhanced query</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>rag-query<span class="w"> </span><span class="s2">&quot;What are the security vulnerabilities?&quot;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Visualize graph</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>visualize<span class="w"> </span>--output<span class="w"> </span>network-graph.html
 </code></pre></div>
 <h2 id="start-server-services">Start Server Services<a class="headerlink" href="#start-server-services" title="Permanent link">&para;</a></h2>
 <h3 id="quick-development-server">Quick Development Server<a class="headerlink" href="#quick-development-server" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Start development server with hot reload</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>dev<span class="w"> </span>--reload
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Access at:</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># - API: http://localhost:8000</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># - MCP: http://localhost:8001</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Start development server with hot reload</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>dev<span class="w"> </span>--reload
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Access at:</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># - API: http://localhost:8000</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># - MCP: http://localhost:8001</span>
 </code></pre></div>
 <h3 id="production-deployment">Production Deployment<a class="headerlink" href="#production-deployment" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Start all services</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>all<span class="w"> </span>--api-port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--mcp-port<span class="w"> </span><span class="m">8001</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Or start individually</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>api<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--workers<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="p">&amp;</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>mcp<span class="w"> </span>--port<span class="w"> </span><span class="m">8001</span><span class="w"> </span>--auth<span class="w"> </span><span class="p">&amp;</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>worker<span class="w"> </span>--count<span class="w"> </span><span class="m">4</span><span class="w"> </span>--queue<span class="w"> </span>redis<span class="w"> </span><span class="p">&amp;</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># Check health</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>health
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Start all services</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>all<span class="w"> </span>--api-port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--mcp-port<span class="w"> </span><span class="m">8001</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Or start individually</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>api<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--workers<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>mcp<span class="w"> </span>--port<span class="w"> </span><span class="m">8001</span><span class="w"> </span>--auth<span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>worker<span class="w"> </span>--count<span class="w"> </span><span class="m">4</span><span class="w"> </span>--queue<span class="w"> </span>redis<span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># Check health</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>health
 </code></pre></div>
 <h2 id="output-formats">Output Formats<a class="headerlink" href="#output-formats" title="Permanent link">&para;</a></h2>
 <h3 id="markdown-files">Markdown Files<a class="headerlink" href="#markdown-files" title="Permanent link">&para;</a></h3>
@@ -2082,21 +2151,21 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 <li><strong>Deploy</strong>: Set up production services when ready</li>
 </ol>
 <h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># View general help</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>netintel-ocr<span class="w"> </span>--help
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># View help for command groups</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>--help
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>--help
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>--help
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># View help for specific commands</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>--help
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>query<span class="w"> </span>--help
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="c1"># Check system status</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>check
-<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>diagnose
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># View general help</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>netintel-ocr<span class="w"> </span>--help
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># View help for command groups</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>--help
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>netintel-ocr<span class="w"> </span>server<span class="w"> </span>--help
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>--help
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># View help for specific commands</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>--help
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>netintel-ocr<span class="w"> </span>kg<span class="w"> </span>query<span class="w"> </span>--help
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="c1"># Check system status</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>check
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>diagnose
 </code></pre></div>
 <h2 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
 <h3 id="command-not-found">Command Not Found<a class="headerlink" href="#command-not-found" title="Permanent link">&para;</a></h3>
@@ -2105,12 +2174,12 @@ They are completely separate from <strong>MiniRAG MODELS</strong> (gemma3:4b-it-
 - New: <code>netintel-ocr process pdf file.pdf</code></p>
 <h3 id="ollama-connection">Ollama Connection<a class="headerlink" href="#ollama-connection" title="Permanent link">&para;</a></h3>
 <p>Ensure OLLAMA_HOST is set:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://your-server:11434&quot;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>check
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OLLAMA_HOST</span><span class="o">=</span><span class="s2">&quot;http://your-server:11434&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>netintel-ocr<span class="w"> </span>system<span class="w"> </span>check
 </code></pre></div></p>
 <h3 id="missing-models">Missing Models<a class="headerlink" href="#missing-models" title="Permanent link">&para;</a></h3>
 <p>Pull required models:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen2.5vl:7b&quot;}&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="nv">$OLLAMA_HOST</span>/api/pull<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;qwen2.5vl:7b&quot;}&#39;</span>
 </code></pre></div></p>
 <p>For more help, see the <a href="../troubleshooting/">Troubleshooting Guide</a> or <a href="../cli-reference/">CLI Reference</a>.</p>
 

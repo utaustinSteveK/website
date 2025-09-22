@@ -577,11 +577,68 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#whats-new-in-v01171" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's New in v0.1.17.1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What&#39;s New in v0.1.17.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modular-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Modular Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-version-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Enhanced Version Display
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       Getting Started
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Documents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1456,11 +1513,68 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#whats-new-in-v01171" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's New in v0.1.17.1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What&#39;s New in v0.1.17.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modular-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Modular Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-version-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Enhanced Version Display
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       Getting Started
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Documents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1634,13 +1748,51 @@
     Vector --&gt; CMDB[Semantic CMDB]
     FalkorDB --&gt; CMDB
     Embeddings --&gt; CMDB</code></pre>
+<h2 id="whats-new-in-v01171">What's New in v0.1.17.1<a class="headerlink" href="#whats-new-in-v01171" title="Permanent link">&para;</a></h2>
+<h3 id="modular-installation">🎯 Modular Installation<a class="headerlink" href="#modular-installation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Reduced base size</strong>: From 2.5GB to just 500MB</li>
+<li><strong>Choose your features</strong>: Install only what you need</li>
+<li><strong>7 optional modules</strong>: kg, vector, api, mcp, performance, dev</li>
+<li><strong>Quick install</strong>: <code>pip install netintel-ocr[kg]</code> for Knowledge Graph</li>
+</ul>
+<h3 id="enhanced-version-display">📊 Enhanced Version Display<a class="headerlink" href="#enhanced-version-display" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Complete visibility</strong>: See all installed and available modules</li>
+<li><strong>Real-time status</strong>: Check service connections instantly</li>
+<li><strong>Installation hints</strong>: Get exact commands for missing features</li>
+<li><strong>JSON output</strong>: Programmatic access to version info</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Check what&#39;s installed and available</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>netintel-ocr<span class="w"> </span>--version
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Output shows:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># ✓ Installed modules with versions</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># ✗ Available modules with install commands</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># ✓ Active service connections</span>
+</code></pre></div>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
-<p>NetIntel-OCR provides a CLI interface for processing technical documentation:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Process network architecture document</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>netintel-ocr<span class="w"> </span>--model<span class="w"> </span>Nanonets-OCR-s:latest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">             </span>--network-model<span class="w"> </span>qwen2.5vl:7b<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">             </span>--debug<span class="w"> </span>cisco-sdwan-design-guide.pdf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">             </span>--start<span class="w"> </span><span class="m">5</span><span class="w"> </span>--end<span class="w"> </span><span class="m">10</span>
+<h3 id="quick-installation">Quick Installation<a class="headerlink" href="#quick-installation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Choose your installation:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Option 1: Minimal (500MB) - Core OCR only</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>pip<span class="w"> </span>install<span class="w"> </span>netintel-ocr
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Option 2: With Knowledge Graph (2GB) - Recommended</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;netintel-ocr[kg]&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># Option 3: Production (2.3GB) - KG + Vector + API</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;netintel-ocr[production]&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Option 4: Everything (2.5GB)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;netintel-ocr[all]&quot;</span>
+</code></pre></div>
+<h3 id="processing-documents">Processing Documents<a class="headerlink" href="#processing-documents" title="Permanent link">&para;</a></h3>
+<p>NetIntel-OCR v0.1.17+ uses a hierarchical CLI structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Process network architecture document (v0.1.17+ syntax)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>netintel-ocr<span class="w"> </span>process<span class="w"> </span>pdf<span class="w"> </span>network-architecture.pdf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">             </span>--model<span class="w"> </span>Nanonets-OCR-s:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">             </span>--network-model<span class="w"> </span>qwen2.5vl:7b
 </code></pre></div>
 <p>See the <a href="quickstart/">Quick Start Guide</a> for installation and basic usage.</p>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
