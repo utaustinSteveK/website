@@ -5,6 +5,10 @@
          <lastmod>2025-09-22</lastmod>
     </url>
     <url>
+         <loc>https://visionml.net/docs/api-v2-guide/</loc>
+         <lastmod>2025-09-22</lastmod>
+    </url>
+    <url>
          <loc>https://visionml.net/docs/api/</loc>
          <lastmod>2025-09-22</lastmod>
     </url>
@@ -33,6 +37,10 @@
          <lastmod>2025-09-22</lastmod>
     </url>
     <url>
+         <loc>https://visionml.net/docs/enterprise-features-guide/</loc>
+         <lastmod>2025-09-22</lastmod>
+    </url>
+    <url>
          <loc>https://visionml.net/docs/installation/</loc>
          <lastmod>2025-09-22</lastmod>
     </url>
@@ -45,11 +53,19 @@
          <lastmod>2025-09-22</lastmod>
     </url>
     <url>
+         <loc>https://visionml.net/docs/mcp-integration-v0.1.18/</loc>
+         <lastmod>2025-09-22</lastmod>
+    </url>
+    <url>
          <loc>https://visionml.net/docs/mcp/</loc>
          <lastmod>2025-09-22</lastmod>
     </url>
     <url>
          <loc>https://visionml.net/docs/migration-v01171/</loc>
+         <lastmod>2025-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://visionml.net/docs/milvus-vector-guide/</loc>
          <lastmod>2025-09-22</lastmod>
     </url>
     <url>
