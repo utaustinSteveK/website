@@ -1,0 +1,239 @@
+/* Custom styles for API documentation */
+
+/* API Endpoint Admonitions */
+.md-typeset .admonition.api-endpoint {
+    border-color: rgb(43, 155, 70);
+}
+
+.md-typeset .api-endpoint > .admonition-title {
+    background-color: rgba(43, 155, 70, 0.1);
+}
+
+/* HTTP Method Colors */
+.method-get {
+    color: #61affe;
+    font-weight: bold;
+}
+
+.method-post {
+    color: #49cc90;
+    font-weight: bold;
+}
+
+.method-put {
+    color: #fca130;
+    font-weight: bold;
+}
+
+.method-patch {
+    color: #50e3c2;
+    font-weight: bold;
+}
+
+.method-delete {
+    color: #f93e3e;
+    font-weight: bold;
+}
+
+/* API Path Styling */
+.api-path {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--md-code-bg-color);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+
+/* Request/Response Blocks */
+.request-block, .response-block {
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+.request-block {
+    background-color: rgba(33, 150, 243, 0.05);
+    border-left: 4px solid #2196F3;
+}
+
+.response-block {
+    background-color: rgba(76, 175, 80, 0.05);
+    border-left: 4px solid #4CAF50;
+}
+
+/* Parameter Tables */
+.parameter-table {
+    width: 100%;
+    margin: 1em 0;
+}
+
+.parameter-table th {
+    text-align: left;
+    background-color: var(--md-default-bg-color--light);
+}
+
+.parameter-table td.param-name {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+}
+
+.parameter-table td.param-type {
+    color: #0066cc;
+    font-style: italic;
+}
+
+.parameter-table td.param-required {
+    text-align: center;
+}
+
+/* Status Code Badges */
+.status-code {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    border-radius: 0.3em;
+    font-weight: bold;
+    font-size: 0.85em;
+}
+
+.status-200, .status-201 {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-400, .status-401, .status-403, .status-404 {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-500, .status-502, .status-503 {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* MCP Tool Cards */
+.mcp-tool-card {
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 8px;
+    padding: 1.5em;
+    margin: 1em 0;
+    transition: box-shadow 0.3s ease;
+}
+
+.mcp-tool-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mcp-tool-card h3 {
+    color: var(--md-primary-fg-color);
+    margin-top: 0;
+}
+
+.mcp-tool-card .tool-signature {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--md-code-bg-color);
+    padding: 0.5em;
+    border-radius: 4px;
+    margin: 0.5em 0;
+}
+
+/* Test Case Styling */
+.test-case {
+    background: var(--md-code-bg-color);
+    border-left: 3px solid var(--md-accent-fg-color);
+    padding: 1em;
+    margin: 1em 0;
+}
+
+.test-given {
+    color: #2196F3;
+}
+
+.test-when {
+    color: #FF9800;
+}
+
+.test-then {
+    color: #4CAF50;
+}
+
+/* Architecture Diagrams */
+.architecture-diagram {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.architecture-diagram svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Navigation Improvements */
+.md-nav__item--active > .md-nav__link {
+    font-weight: bold;
+}
+
+.md-nav__item--section > .md-nav__link {
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+}
+
+/* Code Block Enhancements */
+.highlight {
+    position: relative;
+}
+
+.highlight .copy-button {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.highlight:hover .copy-button {
+    opacity: 1;
+}
+
+/* Quickstart Steps */
+.quickstart-steps {
+    counter-reset: step-counter;
+}
+
+.quickstart-step {
+    position: relative;
+    margin: 2em 0;
+    padding-left: 3em;
+}
+
+.quickstart-step::before {
+    counter-increment: step-counter;
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--md-primary-fg-color);
+    color: white;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Mobile Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .parameter-table {
+        font-size: 0.85em;
+    }
+
+    .mcp-tool-card {
+        padding: 1em;
+    }
+
+    .quickstart-step {
+        padding-left: 2.5em;
+    }
+}
